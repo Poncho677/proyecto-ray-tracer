@@ -38,8 +38,16 @@ def test_producto_por_escalar(vector, escalar, esperado):
     assert vector * escalar == esperado
     assert escalar * vector == esperado
 
-def test_producto_punto():
-    assert Vector(1, 2, 3).punto(Vector(4, 5, 6)) == 32
+@pytest.mark.parametrize(
+    "vector_1, vector_2, esperado",
+    [
+        (Vector(1, 2, 3), Vector(4, 5, 6), 32),
+        (Vector(5, 0, 0), Vector(0, 3, 0), 0),
+        (Vector(1, 2, 3), Vector(0, 0, 0), 0),
+    ],
+)
+def test_producto_punto(vector_1, vector_2, esperado):
+    assert vector_1.punto(vector_2) == pytest.approx(esperado)
 
 def test_norma():
     assert Vector(3, 4, 0).norma() == pytest.approx(5.0)
