@@ -49,6 +49,10 @@ def test_producto_por_escalar(vector, escalar, esperado):
 def test_producto_punto(vector_1, vector_2, esperado):
     assert vector_1.punto(vector_2) == pytest.approx(esperado)
 
+def test_propiedad_autoproducto_punto():
+    v = Vector(2, 4, 5)
+    assert v.punto(v) == pytest.approx(v.norma() ** 2)
+
 def test_norma():
     assert Vector(3, 4, 0).norma() == pytest.approx(5.0)
 
