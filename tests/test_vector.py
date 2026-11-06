@@ -25,9 +25,18 @@ def test_suma(a, b, esperado):
 def test_resta(a, b, esperado):
     assert a - b == esperado
 
-def test_producto_por_escalar():
-    assert Vector(1, 2, 3) * 2 == Vector(2, 4, 6)
-    assert 2 * Vector(1, 2, 3) == Vector(2, 4, 6)
+@pytest.mark.parametrize(
+    "vector, escalar, esperado",
+    [
+        (Vector(1, 2, 3), 2, Vector(2, 4, 6)),
+        (Vector(4, -2, 0), -3, Vector(-12, 6, 0)),
+        (Vector(10, 5, 2), 0.5, Vector(5.0, 2.5, 1.0)),
+        (Vector(1, 2, 3), 0, Vector(0, 0, 0)),
+    ],
+)
+def test_producto_por_escalar(vector, escalar, esperado):
+    assert vector * escalar == esperado
+    assert escalar * vector == esperado
 
 def test_producto_punto():
     assert Vector(1, 2, 3).punto(Vector(4, 5, 6)) == 32
