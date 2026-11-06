@@ -3,8 +3,16 @@ import pytest
 from vector import Vector
 
 
-def test_suma():
-    assert Vector(1, 2, 3) + Vector(3, 4, 5) == Vector(4, 6, 8)
+@pytest.mark.parametrize(
+    "a, b, esperado",
+    [
+    (Vector(1, 2, 3), Vector(4, 5, 6), Vector(5, 7, 9)),
+    (Vector(-1, -2, -3), Vector(-4, -5, -6), Vector(-5, -7, -9)),
+    (Vector(0, 0, 0), Vector(0, 0, 0), Vector(0, 0, 0)),
+    ],
+)
+def test_suma(a, b, esperado):
+    assert a + b == esperado
 
 def test_resta():
     assert Vector(4, 5, 6) - Vector(1, 2, 3) == Vector(3, 3, 3)
@@ -18,3 +26,4 @@ def test_producto_punto():
 
 def test_norma():
     assert Vector(3, 4, 0).norma() == pytest.approx(5.0)
+
