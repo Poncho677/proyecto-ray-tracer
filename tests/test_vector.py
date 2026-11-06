@@ -8,3 +8,7 @@ def test_suma():
 
 def test_resta():
     assert Vector(4, 5, 6) - Vector(1, 2, 3) == Vector(3, 3, 3)
+
+def test_producto_por_escalar():
+    assert Vector(1, 2, 3) * 2 == Vector(2, 4, 6)
+    assert 2 * Vector(1, 2, 3) == Vector(2, 4, 6)
