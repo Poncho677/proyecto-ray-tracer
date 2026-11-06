@@ -32,4 +32,4 @@ class Vector:
     def __eq__(self, otro):
         if isinstance(otro, Vector):
             return self.x == otro.x and self.y == otro.y and self.z == otro.z
-        return False
+        return NotImplemented
