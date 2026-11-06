@@ -1,3 +1,4 @@
+import math
 import pytest
 
 from vector import Vector
@@ -53,8 +54,17 @@ def test_propiedad_autoproducto_punto():
     v = Vector(2, 4, 5)
     assert v.punto(v) == pytest.approx(v.norma() ** 2)
 
-def test_norma():
-    assert Vector(3, 4, 0).norma() == pytest.approx(5.0)
+@pytest.mark.parametrize(
+    "vector, esperado",
+    [
+        (Vector(3, 4, 0), 5.0),
+        (Vector(0, 0, 0), 0.0),
+        (Vector(1, 1, 1), math.sqrt(3)),
+        (Vector(-1, -2, -3), math.sqrt(14)),
+    ],
+)
+def test_norma(vector, esperado):
+    assert vector.norma() == pytest.approx(esperado)
 
 def test_repr():
     v = Vector(1, -2, 3)
