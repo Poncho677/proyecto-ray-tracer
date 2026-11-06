@@ -26,6 +26,9 @@ class Vector:
     def norma(self):
         return math.sqrt(self.punto(self))
 
+    def __repr__(self):
+        return f"Vector({self.x}, {self.y}, {self.z})"
+    
     def __eq__(self, otro):
         if isinstance(otro, Vector):
             return self.x == otro.x and self.y == otro.y and self.z == otro.z
