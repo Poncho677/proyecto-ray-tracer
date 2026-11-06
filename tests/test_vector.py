@@ -18,6 +18,7 @@ def test_suma(a, b, esperado):
     "a, b, esperado",
     [
         (Vector(4, 5, 6), Vector(1, 2, 3), Vector(3, 3, 3)),
+        (Vector(-1, -2, 3), Vector(-4, 5, -6), Vector(3, -7, 9)),
         (Vector(1, 1, 1), Vector(1, 1, 1), Vector(0, 0, 0)),
     ],
 )
