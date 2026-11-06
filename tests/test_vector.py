@@ -14,8 +14,15 @@ from vector import Vector
 def test_suma(a, b, esperado):
     assert a + b == esperado
 
-def test_resta():
-    assert Vector(4, 5, 6) - Vector(1, 2, 3) == Vector(3, 3, 3)
+@pytest.mark.parametrize(
+    "a, b, esperado",
+    [
+        (Vector(4, 5, 6), Vector(1, 2, 3), Vector(3, 3, 3)),
+        (Vector(1, 1, 1), Vector(1, 1, 1), Vector(0, 0, 0)),
+    ],
+)
+def test_resta(a, b, esperado):
+    assert a - b == esperado
 
 def test_producto_por_escalar():
     assert Vector(1, 2, 3) * 2 == Vector(2, 4, 6)
