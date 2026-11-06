@@ -63,9 +63,9 @@ def test_producto_por_escalar(vector, escalar, esperado):
         (Vector(1, 2, 3), Vector(0, 0, 0), 0),
     ],
     ids=[
-        "Vector(1, 2, 3) • Vector(4, 5, 6) = 32",
-        "Vector(5, 0, 0) • Vector(0, 3, 0) = 0",
-        "Vector(1, 2, 3) • Vector(0, 0, 0) = 0"
+        "Vector(1, 2, 3).punto(Vector(4, 5, 6)) = 32",
+        "Vector(5, 0, 0).punto(Vector(0, 3, 0)) = 0",
+        "Vector(1, 2, 3).punto(Vector(0, 0, 0)) = 0"
     ]
 )
 def test_producto_punto(vector_1, vector_2, esperado):
