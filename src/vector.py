@@ -14,6 +14,9 @@ class Vector:
     def __mul__(self, k):
         return Vector(self.x * k, self.y * k, self.z * k)
 
+    def __rmul__(self, k):
+        return self.__mul__(k)
+
     def __eq__(self, otro):
         if isinstance(otro, Vector):
             return self.x == otro.x and self.y == otro.y and self.z == otro.z
