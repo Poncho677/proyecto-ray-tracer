@@ -47,3 +47,9 @@ def test_norma():
 def test_repr():
     v = Vector(1, -2, 3)
     assert repr(v) == "Vector(1, -2, 3)"
+
+def test_igualdad_con_otros_tipos():
+    v = Vector(1, 2, 3)
+    assert v != [1, 2, 3]
+    assert v != "Vector(1, 2, 3)"
+    assert v != 42
