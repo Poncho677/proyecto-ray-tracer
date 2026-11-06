@@ -1,3 +1,6 @@
+import math
+
+
 class Vector:
 
     def __init__(self, x, y, z):
@@ -19,6 +22,9 @@ class Vector:
 
     def punto(self, otro):
         return self.x * otro.x + self.y * otro.y + self.z * otro.z
+
+    def norma(self):
+        return math.sqrt(self.punto(self))
 
     def __eq__(self, otro):
         if isinstance(otro, Vector):
