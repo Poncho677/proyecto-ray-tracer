@@ -34,3 +34,6 @@ def test_producto_punto():
 def test_norma():
     assert Vector(3, 4, 0).norma() == pytest.approx(5.0)
 
+def test_repr():
+    v = Vector(1, -2, 3)
+    assert repr(v) == "Vector(1, -2, 3)"
