@@ -17,6 +17,9 @@ class Vector:
     def __rmul__(self, k):
         return self.__mul__(k)
 
+    def punto(self, otro):
+        return self.x * otro.x + self.y * otro.y + self.z * otro.z
+
     def __eq__(self, otro):
         if isinstance(otro, Vector):
             return self.x == otro.x and self.y == otro.y and self.z == otro.z
