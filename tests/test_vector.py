@@ -4,26 +4,26 @@ from vector import Vector
 
 
 @pytest.mark.parametrize(
-    "a, b, esperado",
+    "vector_1, vector_2, esperado",
     [
     (Vector(1, 2, 3), Vector(4, 5, 6), Vector(5, 7, 9)),
     (Vector(-1, -2, -3), Vector(-4, -5, -6), Vector(-5, -7, -9)),
     (Vector(0, 0, 0), Vector(0, 0, 0), Vector(0, 0, 0)),
     ],
 )
-def test_suma(a, b, esperado):
-    assert a + b == esperado
+def test_suma(vector_1, vector_2, esperado):
+    assert vector_1 + vector_2 == esperado
 
 @pytest.mark.parametrize(
-    "a, b, esperado",
+    "vector_1, vector_2, esperado",
     [
         (Vector(4, 5, 6), Vector(1, 2, 3), Vector(3, 3, 3)),
         (Vector(-1, -2, 3), Vector(-4, 5, -6), Vector(3, -7, 9)),
         (Vector(1, 1, 1), Vector(1, 1, 1), Vector(0, 0, 0)),
     ],
 )
-def test_resta(a, b, esperado):
-    assert a - b == esperado
+def test_resta(vector_1, vector_2, esperado):
+    assert vector_1 - vector_2 == esperado
 
 @pytest.mark.parametrize(
     "vector, escalar, esperado",
