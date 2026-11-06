@@ -15,3 +15,6 @@ def test_producto_por_escalar():
 
 def test_producto_punto():
     assert Vector(1, 2, 3).punto(Vector(4, 5, 6)) == 32
+
+def test_norma():
+    assert Vector(1, 2, 3).norma() == pytest.approx(3.74)
