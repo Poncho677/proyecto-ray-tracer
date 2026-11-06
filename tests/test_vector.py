@@ -14,4 +14,4 @@ def test_producto_por_escalar():
     assert 2 * Vector(1, 2, 3) == Vector(2, 4, 6)
 
 def test_producto_punto():
-    assert Vector(1, 2, 3).punto(Vector(4, 5, 6)) == Vector(4, 10, 18)
+    assert Vector(1, 2, 3).punto(Vector(4, 5, 6)) == 32
