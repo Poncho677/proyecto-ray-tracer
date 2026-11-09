@@ -1,9 +1,7 @@
-import math
+class Figuras:
 
-
-class Esfera:
-    def __init__(self, centro, radio):
-        self.centro = centro
-        self.radio = radio
+    def __init__(self, color, punto):
+        self.color = color
+        self.punto = punto
 
     
