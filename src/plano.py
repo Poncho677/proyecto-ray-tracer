@@ -1,10 +1,10 @@
 from vector import Vector
+from figuras import Figuras
 
-class plano:
+class plano(Figuras):
 
     def __init__(self, punto, normal, color):
-        self.color = color
-        self.punto = punto
+        super().__init__(color, punto)
         self.normal = Vector(normal[0], normal[1], normal[2])
 
     def getColor(self):

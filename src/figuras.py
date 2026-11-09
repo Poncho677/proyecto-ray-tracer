@@ -1,4 +1,4 @@
-import math
+class Figuras:
 
 e = 10**-6
 

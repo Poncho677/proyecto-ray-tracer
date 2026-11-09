@@ -1,9 +1,11 @@
-class Esfera:
+import math
+from figuras import Figuras
+
+class Esfera(Figuras):
 
     def __init__(self, centro, radio, color):
-        self.color = color
+        super().__init__(color, centro)
         self.radio = radio
-        self.centro = centro
 
     def getCentro(self):
         return self.centro
