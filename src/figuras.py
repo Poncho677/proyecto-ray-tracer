@@ -1,5 +1,7 @@
 import math
 
+e = 10**-6
+
 
 class Esfera:
     def __init__(self, centro, radio):
@@ -20,9 +22,9 @@ class Esfera:
         raiz_delta = math.sqrt(delta)
         t1 = (-b - raiz_delta) / (2 * a)
         t2 = (-b + raiz_delta) / (2 * a)
-        if t1 > 0:
+        if t1 > e:
             return t1
-        elif t2 > 0:
+        elif t2 > e:
             return t2
         else:
             return None
@@ -34,14 +36,14 @@ class Plano:
         self.normal = normal
 
     def interseccion(self, rayo):
-        denominador = self.normal.punto(rayo.direccion)
+        denom = self.normal.punto(rayo.direccion)
 
         # El rayo es paralelo al plano, no intersecta
-        if abs(denominador) < 0:
+        if abs(denom) < e:
             return None
 
-        t = (self.punto - rayo.origen) * self.normal / denominador
-        if t > 0:
+        t = (self.punto - rayo.origen) * self.normal / denom
+        if t > e:
             return t
         else:
             return None
