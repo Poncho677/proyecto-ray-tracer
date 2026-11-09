@@ -26,3 +26,22 @@ class Esfera:
             return t2
         else:
             return None
+
+
+class Plano:
+    def __init__(self, punto, normal):
+        self.punto = punto
+        self.normal = normal
+
+    def interseccion(self, rayo):
+        denominador = self.normal.punto(rayo.direccion)
+
+        # El rayo es paralelo al plano, no intersecta
+        if abs(denominador) < 0:
+            return None
+
+        t = (self.punto - rayo.origen) * self.normal / denominador
+        if t > 0:
+            return t
+        else:
+            return None
