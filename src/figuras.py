@@ -42,7 +42,7 @@ class Plano:
         if abs(denom) < e:
             return None
 
-        t = (self.punto - rayo.origen) * self.normal / denom
+        t = (self.punto - rayo.origen).punto(self.normal) / denom
         if t > e:
             return t
         else:
