@@ -26,6 +26,12 @@ class Vector:
     def norma(self):
         return math.sqrt(self.punto(self))
 
+    def normalizar(self):
+        longitud = self.norma()
+        if longitud == 0:
+            raise ValueError("No se puede normalizar un vector cero")
+        return Vector(self.x / longitud, self.y / longitud, self.z / longitud)
+
     def __repr__(self):
         return f"Vector({self.x}, {self.y}, {self.z})"
     
