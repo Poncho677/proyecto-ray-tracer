@@ -36,11 +36,12 @@ class Vector:
         return Vector(
             self.y * otro.z - self.z * otro.y,
             self.z * otro.x - self.x * otro.z,
-            self.x * otro.y - self.y * otro.x
+            self.x * otro.y - self.y * otro.x,
         )
+
     def __repr__(self):
         return f"Vector({self.x}, {self.y}, {self.z})"
-    
+
     def __eq__(self, otro):
         if isinstance(otro, Vector):
             return self.x == otro.x and self.y == otro.y and self.z == otro.z
