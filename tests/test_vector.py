@@ -108,3 +108,8 @@ def test_normalizar():
     assert v.x == pytest.approx(3 / 5)
     assert v.y == pytest.approx(4 / 5)
     assert v.z == pytest.approx(0)
+
+def test_producto_cruz():
+    v1 = Vector(1, 2, 3)
+    v2 = Vector(3, 4, 5)
+    assert v1.producto_cruz(v2) == Vector(-2, 4, -2)
