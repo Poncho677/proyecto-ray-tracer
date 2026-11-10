@@ -102,3 +102,9 @@ def test_igualdad_con_otros_tipos():
     assert v != [1, 2, 3]
     assert v != "Vector(1, 2, 3)"
     assert v != 42
+
+def test_normalizar():
+    v = Vector(3, 4, 0).normalizar()
+    assert v.x == pytest.approx(3 / 5)
+    assert v.y == pytest.approx(4 / 5)
+    assert v.z == pytest.approx(0)
