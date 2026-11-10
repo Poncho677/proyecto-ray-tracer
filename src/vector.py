@@ -32,6 +32,12 @@ class Vector:
             raise ValueError("No se puede normalizar un vector cero")
         return Vector(self.x / longitud, self.y / longitud, self.z / longitud)
 
+    def producto_cruz(self, otro):
+        return Vector(
+            self.y * otro.z - self.z * otro.y,
+            self.z * otro.x - self.x * otro.z,
+            self.x * otro.y - self.y * otro.x
+        )
     def __repr__(self):
         return f"Vector({self.x}, {self.y}, {self.z})"
     
