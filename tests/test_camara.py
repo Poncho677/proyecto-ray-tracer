@@ -122,3 +122,8 @@ def test_rayos_esquinas_fov_90():
     for (columna, fila), (x, y, z) in esperado.items():
         d = c.generar_rayo(columna, fila).direccion
         assert componentes(d) == pytest.approx((x / r, y / r, z / r))
+
+
+def test_rayo_direccion_unitaria(camara_inclinada):
+    for columna, fila in [(0, 0), (400, 224), (123, 45), (200, 112)]:
+        assert camara_inclinada.generar_rayo(columna, fila).direccion.norma() == pytest.approx(1)
