@@ -108,3 +108,17 @@ def test_rayo_columnas_laterales(camara_base):
 def test_rayo_filas_extremas(camara_base):
     assert camara_base.generar_rayo(200, 0).direccion.y > 0
     assert camara_base.generar_rayo(200, 224).direccion.y < 0
+
+
+def test_rayos_esquinas_fov_90():
+    c = Camara(Vector(0, 0, 0), Vector(0, 0, -1), 90, 2, 2)
+    r = math.sqrt(0.5**2 + 0.5**2 + 1)
+    esperado = {
+        (0, 0): (-0.5, 0.5, -1),
+        (1, 0): (0.5, 0.5, -1),
+        (0, 1): (-0.5, -0.5, -1),
+        (1, 1): (0.5, -0.5, -1),
+        }
+    for (columna, fila), (x, y, z) in esperado.items():
+        d = c.generar_rayo(columna, fila).direccion
+        assert componentes(d) == pytest.approx((x / r, y / r, z / r))
