@@ -17,3 +17,4 @@ class Camara:
         self.alto = alto
         self.adelante = (mira_a - posicion).normalizar()
         self.derecha = self.adelante.producto_cruz(ARRIBA_MUNDO).normalizar()
+        self.arriba = self.derecha.producto_cruz(self.adelante)
