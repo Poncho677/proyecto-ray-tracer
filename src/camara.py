@@ -1,5 +1,6 @@
 import math
 
+from rayo import Rayo
 from vector import Vector
 
 ARRIBA_MUNDO = Vector(0, 1, 0)
@@ -22,3 +23,6 @@ class Camara:
         self.arriba = self.derecha.producto_cruz(self.adelante)
         self.mitad_ancho = math.tan(math.radians(fov) / 2)
         self.mitad_alto = self.mitad_ancho * alto / ancho
+
+    def generar_rayo(self, columna, fila):
+        return Rayo(self.posicion, self.adelante)
