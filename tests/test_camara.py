@@ -21,3 +21,7 @@ def test_crear_camara(camara_base):
     assert camara_base.fov == 60
     assert camara_base.ancho == 401
     assert camara_base.alto == 225
+
+
+def test_adelante(camara_base):
+    assert camara_base.adelante == Vector(0,0,-1)
