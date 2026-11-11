@@ -103,3 +103,8 @@ def test_rayo_central_apunta_adelante(camara_base):
 def test_rayo_columnas_laterales(camara_base):
     assert camara_base.generar_rayo(400, 112).direccion.x > 0
     assert camara_base.generar_rayo(0, 112).direccion.x < 0
+
+
+def test_rayo_filas_extremas(camara_base):
+    assert camara_base.generar_rayo(200, 0).direccion.y > 0
+    assert camara_base.generar_rayo(200, 224).direccion.y < 0
