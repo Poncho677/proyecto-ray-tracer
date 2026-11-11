@@ -64,3 +64,16 @@ def test_camara_inclinada_derecha(camara_inclinada):
 def test_camara_inclinada_arriba(camara_inclinada):
     raiz = math.sqrt(37)
     assert componentes(camara_inclinada.arriba) == pytest.approx((0, 6 / raiz, -1 / raiz))
+
+
+@pytest.mark.parametrize(
+    "ancho, alto, fov",
+    [
+        (0, 225, 60),
+        (400, -5, 60),
+        (400, 225, 180)
+    ]
+)
+def test_parametros_invalidos(ancho, alto, fov):
+    with pytest.raises(ValueError):
+        Camara(Vector(0, 0, 0), Vector(0, 0, -1), fov, ancho, alto)
