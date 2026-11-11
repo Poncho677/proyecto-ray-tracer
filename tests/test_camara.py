@@ -93,3 +93,8 @@ def test_ventana_fov_60(camara_base):
 def test_rayo_sale_de_la_posicion_de_la_camara(camara_inclinada):
     rayo = camara_inclinada.generar_rayo(10, 20)
     assert rayo.origen == Vector(0, 1, 3)
+
+
+def test_rayo_central_apunta_adelante(camara_base):
+    rayo = camara_base.generar_rayo(200, 112)
+    assert componentes(rayo.direccion) == pytest.approx((0, 0, -1))
