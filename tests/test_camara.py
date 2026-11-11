@@ -25,3 +25,7 @@ def test_crear_camara(camara_base):
 
 def test_adelante(camara_base):
     assert camara_base.adelante == Vector(0,0,-1)
+
+
+def test_derecha(camara_base):
+    assert camara_base.derecha == Vector(1, 0, 0)
