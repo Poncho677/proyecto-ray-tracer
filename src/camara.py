@@ -1,3 +1,8 @@
+from vector import Vector
+
+ARRIBA_MUNDO = Vector(0, 1, 0)
+
+
 class Camara:
 
     def __init__(self, posicion, mira_a, fov, ancho, alto):
@@ -11,3 +16,4 @@ class Camara:
         self.ancho = ancho
         self.alto = alto
         self.adelante = (mira_a - posicion).normalizar()
+        self.derecha = self.adelante.producto_cruz(ARRIBA_MUNDO).normalizar()
