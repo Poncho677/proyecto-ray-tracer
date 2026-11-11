@@ -88,3 +88,8 @@ def test_ventana_fov_90_imagen_4x2():
 def test_ventana_fov_60(camara_base):
     assert camara_base.mitad_ancho == pytest.approx(1 / math.sqrt(3))
     assert camara_base.mitad_alto == pytest.approx(1 / math.sqrt(3) * 225 / 401)
+
+
+def test_rayo_sale_de_la_posicion_de_la_camara(camara_inclinada):
+    rayo = camara_inclinada.generar_rayo(10, 20)
+    assert rayo.origen == Vector(0, 1, 3)
