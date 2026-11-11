@@ -10,3 +10,4 @@ class Camara:
         self.fov = fov
         self.ancho = ancho
         self.alto = alto
+        self.adelante = (mira_a - posicion).normalizar()
