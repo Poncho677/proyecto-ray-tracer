@@ -26,5 +26,6 @@ class Camara:
 
     def generar_rayo(self, columna, fila):
         desplazamiento_horizontal = (2 * (columna + 0.5) / self.ancho - 1) * self.mitad_ancho
-        direccion = self.adelante + self.derecha * desplazamiento_horizontal
+        desplazamiento_vertical = (1 - 2 * (fila + 0.5) / self.alto) * self.mitad_alto
+        direccion = self.adelante + self.derecha * desplazamiento_horizontal + self.arriba * desplazamiento_vertical
         return Rayo(self.posicion, direccion)
