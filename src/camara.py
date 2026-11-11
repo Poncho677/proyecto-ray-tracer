@@ -1,3 +1,5 @@
+import math
+
 from vector import Vector
 
 ARRIBA_MUNDO = Vector(0, 1, 0)
@@ -18,3 +20,5 @@ class Camara:
         self.adelante = (mira_a - posicion).normalizar()
         self.derecha = self.adelante.producto_cruz(ARRIBA_MUNDO).normalizar()
         self.arriba = self.derecha.producto_cruz(self.adelante)
+        self.mitad_ancho = math.tan(math.radians(fov) / 2)
+        self.mitad_alto = self.mitad_ancho * alto / ancho
