@@ -98,3 +98,8 @@ def test_rayo_sale_de_la_posicion_de_la_camara(camara_inclinada):
 def test_rayo_central_apunta_adelante(camara_base):
     rayo = camara_base.generar_rayo(200, 112)
     assert componentes(rayo.direccion) == pytest.approx((0, 0, -1))
+
+
+def test_rayo_columnas_laterales(camara_base):
+    assert camara_base.generar_rayo(400, 112).direccion.x > 0
+    assert camara_base.generar_rayo(0, 112).direccion.x < 0
