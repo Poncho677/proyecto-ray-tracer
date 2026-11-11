@@ -55,3 +55,8 @@ def test_arriba(camara_base):
 def test_camara_inclinada_adelante(camara_inclinada):
     raiz = math.sqrt(37)
     assert componentes(camara_inclinada.adelante) == pytest.approx((0, -1 / raiz, -6 / raiz))
+
+
+def test_camara_inclinada_derecha(camara_inclinada):
+    raiz = math.sqrt(37)
+    assert componentes(camara_inclinada.derecha) == pytest.approx((1, 0, 0))
