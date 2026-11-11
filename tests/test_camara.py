@@ -77,3 +77,14 @@ def test_camara_inclinada_arriba(camara_inclinada):
 def test_parametros_invalidos(ancho, alto, fov):
     with pytest.raises(ValueError):
         Camara(Vector(0, 0, 0), Vector(0, 0, -1), fov, ancho, alto)
+
+
+def test_ventana_fov_90_imagen_4x2():
+    c = Camara(Vector(0, 0, 0), Vector(0, 0, -1), 90, 4, 2)
+    assert c.mitad_ancho == pytest.approx(1.0)
+    assert c.mitad_alto == pytest.approx(0.5)
+
+
+def test_ventana_fov_60(camara_base):
+    assert camara_base.mitad_ancho == pytest.approx(1 / math.sqrt(3))
+    assert camara_base.mitad_alto == pytest.approx(1 / math.sqrt(3) * 225 / 401)
