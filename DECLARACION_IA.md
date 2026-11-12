@@ -4,7 +4,7 @@
 Proyecto final: Ray Tracer
 
 **Integrantes:**
-Omar Díaz Aguilar, Lizeth Suemy Esquivel Izquierdo, Gustavo Botello Salcido
+Gustavo Botello Salcido
 
 **Fecha:**
 9/Nov/2026
