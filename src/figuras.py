@@ -4,4 +4,7 @@ class Figuras:
         self.color = color
         self.punto = punto
 
+    def __iter__(self):
+        return iter(self.punto)
+
     
