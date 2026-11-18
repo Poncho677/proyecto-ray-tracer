@@ -1,0 +1,2 @@
+class LightError(Exception):
+    pass
