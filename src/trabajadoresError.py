@@ -1,0 +1,2 @@
+class TrabajadoresError(Exception):
+    pass

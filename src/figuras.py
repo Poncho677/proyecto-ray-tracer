@@ -1,7 +1,8 @@
-import math
+class Figuras:
 
 e = 10**-6
 
+<<<<<<< HEAD
 
 class Esfera:
     def __init__(self, centro, radio, color):
@@ -55,3 +56,9 @@ class Plano:
 
     def normal_en(self, punto):
             return self.normal
+=======
+    def __iter__(self):
+        return iter(self.punto)
+
+    
+>>>>>>> f2d742a (Añadiendo manejo de errores)

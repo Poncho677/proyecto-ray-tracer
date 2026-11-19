@@ -7,6 +7,12 @@ class Esfera(Figuras):
         super().__init__(color, centro)
         self.radio = radio
 
+<<<<<<< HEAD
+=======
+    def __iter__(self):
+        return super().__iter__()
+
+>>>>>>> 970907b3a0723c65b242d6dcda03895489f5b49a
     def getCentro(self):
         return self.centro
 
