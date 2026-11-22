@@ -4,6 +4,7 @@ from vector import Vector
 from figuras import Esfera
 from figuras import Plano
 
+BLANCO = (1.0, 1.0, 1.0)
 
 # Tests con esferas
 @pytest.mark.parametrize(
@@ -16,7 +17,7 @@ from figuras import Plano
     ],
 )
 def test_esfera_con_choque(centro, radio, origen, direccion, esperado):
-    esfera = Esfera(centro, radio)
+    esfera = Esfera(centro, radio, BLANCO)
     rayo = Rayo(origen, direccion)
     assert esfera.interseccion(rayo) == pytest.approx(esperado)
 
@@ -31,8 +32,8 @@ def test_esfera_con_choque(centro, radio, origen, direccion, esperado):
         (Vector(0.625, 0, -3), 0.375, Vector(0, 0, 0), Vector(0, 0, -1)),
     ],
 )
-def test_esfera_sin_choque(centro, radio, origen, direccion):
-    esfera = Esfera(centro, radio)
+def test_esfera_sin_choque(centro, radio, origen, direccion,):
+    esfera = Esfera(centro, radio, BLANCO)
     rayo = Rayo(origen, direccion)
     assert esfera.interseccion(rayo) is None
 
@@ -49,7 +50,7 @@ def test_esfera_sin_choque(centro, radio, origen, direccion):
     ],
 )
 def test_plano_con_choque(punto, normal, origen, direccion, esperado):
-    plano = Plano(punto, normal)
+    plano = Plano(punto, normal, BLANCO)
     rayo = Rayo(origen, direccion)
     assert plano.interseccion(rayo) == pytest.approx(esperado)
 
@@ -64,6 +65,6 @@ def test_plano_con_choque(punto, normal, origen, direccion, esperado):
     ],
 )
 def test_plano_sin_choque(punto, normal, origen, direccion):
-    plano = Plano(punto, normal)
+    plano = Plano(punto, normal, BLANCO)
     rayo = Rayo(origen, direccion)
     assert plano.interseccion(rayo) is None
