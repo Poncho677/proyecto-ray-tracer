@@ -10,6 +10,19 @@ from plano import Plano
 
 args = None
 
+class Luz:
+    def __init__(self, posicion, intensidad):
+        self.posicion = posicion
+        self.intensidad = intensidad
+
+class Escena:
+    def __init__(self, objetos, luces, fondo, luz_ambiental):
+        self.objetos = objetos
+        self.luces = luces
+        self.fondo = fondo 
+        self.luz_ambiental = luz_ambiental
+
+
 def leer():
     if len(sys.argv) > 1:
         args = sys.argv

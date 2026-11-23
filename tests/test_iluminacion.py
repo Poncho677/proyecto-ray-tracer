@@ -4,28 +4,17 @@ from vector import Vector
 from rayo import Rayo
 from figuras import Esfera, Plano
 from iluminacion import limitar, choque_ilum, esta_sombra, color_rayo
+from escena import Escena, Luz
 
 BLANCO = (1.0, 1.0, 1.0)
 FONDO = (0.6, 0.8, 1.0)
 RAYO_SUELO = Rayo(Vector(0, 1, 0), Vector(0, -1, 0))
 
-class EscenaF:
-    def __init__(self, objetos, luces, luz_ambiental):
-        self.objetos = objetos
-        self.luces = luces
-        self.luz_ambiental = luz_ambiental
-        self.fondo = FONDO
-
-class LuzF:
-    def __init__(self, posicion, intensidad):
-        self.posicion = posicion
-        self.intensidad = intensidad
-
 def escena(objetos, luces, ambiental=0.1):
-    return EscenaF(objetos, luces, ambiental)
+    return Escena(objetos, luces, FONDO, ambiental)
 
 def luz(x, y, z, intensidad=1.0):
-    return LuzF(Vector(x, y, z), intensidad)
+    return Luz(Vector(x, y, z), intensidad)
 
 def suelo(color=BLANCO):
     return Plano(Vector(0, 0, 0), Vector(0, 1, 0), color)
