@@ -18,7 +18,7 @@ class MatrizPPM:
     def get(self, i, j):
         return self.datos[j][i]
 
-#de rgb a bytes
+
     def a_bytes(self):
         matriz = []
         for fila in self.datos:
