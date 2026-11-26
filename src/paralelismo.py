@@ -1,3 +1,5 @@
+import multiprocessing as mp
+
 from Imagen import Imagen
 from MatrizPPM import MatrizPPM
 from trabajadoresError import TrabajadoresError
@@ -12,6 +14,7 @@ def renderizar_fila(fila: int) -> list:
     """Calcula los colores RGB de una fila completa de píxeles."""
     return [_imagen.calcular_pixel(columna, fila) for columna in range (_imagen.ancho)]
 
+
 class RenderizadorParalelo:
     def __init__(self, trabajadores: int):
         if trabajadores < 1:
@@ -20,8 +23,12 @@ class RenderizadorParalelo:
 
     def renderizar(self, escena, camara) -> MatrizPPM:
         imagen = Imagen(camara.ancho, camara.alto, camara, escena)
-        _inicializar(imagen)
-        filas = [renderizar_fila(y) for y in range(imagen.alto)]
+        if self.trabajadores == 1:
+            _inicializar(imagen)
+            filas = [renderizar_fila(y) for y in range(imagen.alto)]
+        else:
+            with mp.Pool(processes=self.trabajadores, initializer=_inicializar, initargs=[imagen]) as pool:
+                filas = pool.map(renderizar_fila, range(imagen.alto))
 
         matriz = MatrizPPM(imagen.ancho, imagen.alto)
         matriz.datos = filas
