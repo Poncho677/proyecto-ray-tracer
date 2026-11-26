@@ -45,3 +45,10 @@ def test_paralelo_da_igual_que_con_secuencial():
     secuencial = RenderizadorParalelo(1).renderizar(escena, camara)
     paralelo = RenderizadorParalelo(2).renderizar(escena, camara)
     assert secuencial.datos == paralelo.datos
+
+def test_mas_trabajadores_que_filas():
+    escena = escena_de_prueba()[0]
+    camara = Camara(Vector(0, 1, 3), Vector(0, 0, -3), 60, 16, 3)
+    secuencial = RenderizadorParalelo(1).renderizar(escena, camara)
+    paralelo = RenderizadorParalelo(2).renderizar(escena, camara)
+    assert secuencial.datos == paralelo.datos
