@@ -39,3 +39,9 @@ def test_cero_trabajadores():
 def test_trabajadores_negativos():
     with pytest.raises(TrabajadoresError):
         RenderizadorParalelo(-1)
+
+def test_paralelo_da_igual_que_con_secuencial():
+    escena, camara = escena_de_prueba()
+    secuencial = RenderizadorParalelo(1).renderizar(escena, camara)
+    paralelo = RenderizadorParalelo(2).renderizar(escena, camara)
+    assert secuencial.datos == paralelo.datos
