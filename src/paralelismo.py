@@ -1,18 +1,16 @@
-import multiprocessing as mp
-import time
-
-from iluminacion import color_rayo
+from Imagen import Imagen
 from MatrizPPM import MatrizPPM
 from trabajadoresError import trabajadoresError
 
+_imagen = None
+
+def _inicializar(imagen):
+    global _imagen
+    _imagen = imagen
+
 def renderizar_fila(fila: int, escena, camara) -> list:
     """Calcula los colores RGB de una fila completa de píxeles."""
-    fila_colores = []
-    for columna in range(camara.ancho):
-        rayo = camara.generar_rayo(columna, fila)
-        color = color_rayo(escena, rayo)
-        fila_colores.append(color)
-    return fila_colores
+    return [_imagen.calcular_pixel(columna, fila) for columna in range (_imagen.ancho)]
 
 class RenderizadorParalelo:
     def __init__(self, trabajadores: int):
@@ -21,7 +19,10 @@ class RenderizadorParalelo:
         self.trabajadores = trabajadores
 
     def renderizar(self, escena, camara) -> MatrizPPM:
-        filas = [renderizar_fila(y, escena, camara) for y in range(camara.alto)]
-        matriz = MatrizPPM(camara.ancho, camara.alto)
+        imagen = Imagen(camara.ancho, camara.alto, camara, escena)
+        _inicializar(imagen)
+        filas = [renderizar_fila(y) for y in range(imagen.alto)]
+
+        matriz = MatrizPPM(imagen.ancho, imagen.alto)
         matriz.datos = filas
         return matriz
