@@ -23,3 +23,9 @@ def test_dimensiones_de_la_matriz():
     matriz = RenderizadorParalelo(1).renderizar(escena, camara)
     assert len(matriz.datos) == camara.alto
     assert all(len(fila) == camara.ancho for fila in matriz.datos)
+
+def test_secuencial_coincide_con_imagen_render():
+    escena, camara = escena_de_prueba()
+    esperado = Imagen(camara.ancho, camara.alto, camara, escena).render()
+    obtenido = RenderizadorParalelo(1).renderizar(escena, camara)
+    assert obtenido.datos == esperado.datos
