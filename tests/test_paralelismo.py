@@ -1,8 +1,10 @@
+import pytest
 from camara import Camara
 from escena import Escena, Luz
 from figuras import Esfera, Plano
 from Imagen import Imagen
 from paralelismo import RenderizadorParalelo
+from trabajadoresError import TrabajadoresError
 from vector import Vector
 
 def escena_de_prueba():
@@ -29,3 +31,11 @@ def test_secuencial_coincide_con_imagen_render():
     esperado = Imagen(camara.ancho, camara.alto, camara, escena).render()
     obtenido = RenderizadorParalelo(1).renderizar(escena, camara)
     assert obtenido.datos == esperado.datos
+
+def test_cero_trabajadores():
+    with pytest.raises(TrabajadoresError):
+        RenderizadorParalelo(0)
+
+def test_trabajadores_negativos():
+    with pytest.raises(TrabajadoresError):
+        RenderizadorParalelo(-1)
