@@ -1,6 +1,6 @@
 from Imagen import Imagen
 from MatrizPPM import MatrizPPM
-from trabajadoresError import trabajadoresError
+from trabajadoresError import TrabajadoresError
 
 _imagen = None
 
@@ -8,7 +8,7 @@ def _inicializar(imagen):
     global _imagen
     _imagen = imagen
 
-def renderizar_fila(fila: int, escena, camara) -> list:
+def renderizar_fila(fila: int) -> list:
     """Calcula los colores RGB de una fila completa de píxeles."""
     return [_imagen.calcular_pixel(columna, fila) for columna in range (_imagen.ancho)]
 
