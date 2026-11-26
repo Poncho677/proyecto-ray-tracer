@@ -19,18 +19,17 @@ class Luz:
         self.intensidad = intensidad
 
 class Escena:
-    def __init__(self, objetos, luces, fondo, luz_ambiental):
+    def __init__(self, objetos=None, luces=None, fondo=None, luz_ambiental=None, camara=None, numTrabajadores=None):
         self.objetos = objetos
         self.luces = luces
         self.fondo = fondo 
         self.luz_ambiental = luz_ambiental
+        self.camara = camara
+        self.numTrabajadores = numTrabajadores
 
     @staticmethod
     def leer():
-        if len(sys.argv) > 1:
-            args = sys.argv
-        else:
-            raise EntradaError("No se recibió texto alguno")
+        args = sys.argv
         encontrado = False
         archivo = None
         for j in args:
@@ -41,18 +40,19 @@ class Escena:
             raise EntradaError("No hay archivo json")
         try:
             dicc = json.load(open(archivo))
-            numTrabajadores = 0
-            t = args.index("--trabajadores")
-            try:
-                if t+1 >= len(args):
-                    raise TrabajadoresError()
-                numTrabajadores = int(args[t+1])
-                if numTrabajadores < 1:
-                    raise TrabajadoresError("Número invalido, porfavor ingresar números positivos mayores a 1 dentro de la capacidad de su dispositivo")
+            numTrabajadores = 4
+            if "--trabajadores" in args:
+                t = args.index("--trabajadores")
+                try:
+                    if t+1 >= len(args):
+                        raise TrabajadoresError()
+                    numTrabajadores = int(args[t+1])
+                    if numTrabajadores < 1:
+                        raise TrabajadoresError("Número invalido, porfavor ingresar números positivos mayores a 1 dentro de la capacidad de su dispositivo")
                             
-            except ValueError:
-                print(args[t+1])
-                print("No es del tipo númerico")
+                except ValueError:
+                    print(args[t+1])
+                    print("No es del tipo númerico")
 
             ancho = 0
             alto = 0
@@ -60,7 +60,7 @@ class Escena:
                 img = dicc['imagen']
                 ancho = img['ancho']
                 alto = img['alto']
-                if ancho < 0 or alto < 0:
+                if ancho <= 0 or alto <= 0:
                     raise ImageError("Tipo de dato invalido: ancho o altura menor a 0")
 
             camara = None
@@ -69,7 +69,7 @@ class Escena:
                 posicion = cam['posicion']
                 mira = cam['mira_a']
                 fov = cam['fov']
-                if fov < 60 or fov > 120:
+                if fov <= 0 or fov >= 180:
                     raise CamError("Tipo de dato invalido: fov negativo")
                 posicion2 = Vector(posicion[0], posicion[1], posicion[2])
                 mira_a = Vector(mira[0], mira[1], mira[2])
@@ -78,7 +78,6 @@ class Escena:
             fondo2 = Vector(0, 0, 0)
             if 'fondo' in dicc:
                 fondo = dicc['fondo']
-                fondo2 = Vector(fondo[0], fondo[1], fondo[2])
 
             luz_ambiental = 0
             if 'luz_ambiental' in dicc:
@@ -97,16 +96,20 @@ class Escena:
                 pln = []
                 for i in range(len(obj)):
                     if obj[i]['tipo'] == "esfera":
-                        esf.append(Esfera(obj[i]['centro'], obj[i]['radio'], obj[i]['color']))
+                        centro = Vector(obj[i]['centro'][0], obj[i]['centro'][1], obj[i]['centro'][2])
+                        esf.append(Esfera(centro, obj[i]['radio'], obj[i]['color']))
                     if obj[i]['tipo'] == "plano":
-                        pln.append(Plano(obj[i]['punto'], obj[i]['normal'], obj[i]['color']))
-            objetos = esf + pln
+                        punto = Vector(obj[i]['punto'][0], obj[i]['punto'][1], obj[i]['punto'][2])
+                        normal = Vector(obj[i]['normal'][0], obj[i]['normal'][1], obj[i]['normal'][2])
+                        normal = normal.normalizar()
+                        pln.append(Plano(punto, normal, obj[i]['color']))
+                objetos = esf + pln
 
         except FileNotFoundError:
             print("Archivo no encontrado, porfavor revisar el nombre del archivo")
             return None
 
-        escena = Escena(objetos, luces2, fondo2, luz_ambiental)
+        escena = Escena(objetos, luces2, fondo, luz_ambiental, camara, numTrabajadores)
         imagen = Imagen(ancho, alto, camara, escena)
         return escena
         
