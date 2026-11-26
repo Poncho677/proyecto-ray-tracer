@@ -17,3 +17,9 @@ def escena_de_prueba():
     escena = Escena(objetos, luces, (0.6, 0.8, 1.0), 0.1)
     camara = Camara(Vector(0, 1, 3), Vector(0, 0, -3), 60, 80, 45)
     return escena, camara
+
+def test_dimensiones_de_la_matriz():
+    escena, camara = escena_de_prueba()
+    matriz = RenderizadorParalelo(1).renderizar(escena, camara)
+    assert len(matriz.datos) == camara.alto
+    assert all(len(fila) == camara.ancho for fila in matriz.datos)
