@@ -40,5 +40,6 @@ def medir_promedio(trabajadores, escena, camara, repeticiones = 3):
 
 if __name__ == "__main__":
     escena, camara = crear_escena()
-    promedio = medir_promedio(1, escena, camara)
-    print(f"1 trabajador: {promedio:.2f} s (promedio de las 3 ejecuciones)")
+    for trabajadores in (1, 2, 4, 8):
+        promedio = medir_promedio(trabajadores, escena, camara)
+        print(f"{trabajadores} trabajador(es): {promedio:.2f} s")
