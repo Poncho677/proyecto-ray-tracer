@@ -1,4 +1,5 @@
 import time
+
 from camara import Camara
 from escena import Escena, Luz
 from figuras import Esfera, Plano
@@ -30,7 +31,14 @@ def medir(trabajadores, escena, camara):
     RenderizadorParalelo(trabajadores).renderizar(escena, camara)
     return time.perf_counter() - inicio
 
+#función para medir el rendimiento del render y sacar el promedio medido en segundos
+def medir_promedio(trabajadores, escena, camara, repeticiones = 3):
+    tiempos = []
+    for repeticion in range(repeticiones):
+        tiempos.append(medir(trabajadores, escena, camara))
+    return sum(tiempos) / len(tiempos)
+
 if __name__ == "__main__":
     escena, camara = crear_escena()
-    segundos = medir(1, escena, camara)
-    print(f"1 trabajador: {segundos:.2f} s")
+    promedio = medir_promedio(1, escena, camara)
+    print(f"1 trabajador: {promedio:.2f} s (promedio de las 3 ejecuciones)")
