@@ -40,6 +40,12 @@ def medir_promedio(trabajadores, escena, camara, repeticiones = 3):
 
 if __name__ == "__main__":
     escena, camara = crear_escena()
+    tiempos = {}
     for trabajadores in (1, 2, 4, 8):
-        promedio = medir_promedio(trabajadores, escena, camara)
-        print(f"{trabajadores} trabajador(es): {promedio:.2f} s")
+        tiempos[trabajadores] = medir_promedio(trabajadores, escena, camara)
+
+    base = tiempos[1]
+    print("Trabajadores   Tiempo (s)   Speedup")
+    for trabajadores in tiempos:
+        speedup = base / tiempos[trabajadores]
+        print(f"{trabajadores:>12} {tiempos[trabajadores]:>10.2f} {speedup:>7.2f}")
